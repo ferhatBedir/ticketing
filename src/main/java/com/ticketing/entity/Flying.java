@@ -15,6 +15,10 @@ public class Flying {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name = "CREATE_DATE", nullable = false)
+    private Date createDate;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AIRLINE_COMPANY_ID", referencedColumnName = "ID", nullable = false)
     private AirlineCompany airlineCompany;
@@ -34,5 +38,8 @@ public class Flying {
 
     @Column(name = "QUOTA", nullable = false)
     private Integer quota;
+
+    @Column(name = "REMAINING_QUOTA", nullable = false)
+    private Integer remainingQuota;
 
 }

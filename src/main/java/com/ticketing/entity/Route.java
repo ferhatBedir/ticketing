@@ -4,6 +4,7 @@ package com.ticketing.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Table(name = "ROUTE")
@@ -15,6 +16,9 @@ public class Route {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "CREATE_DATE", nullable = false)
+    private Date createDate;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "STARTING_PLACE_ID", referencedColumnName = "ID", nullable = false)

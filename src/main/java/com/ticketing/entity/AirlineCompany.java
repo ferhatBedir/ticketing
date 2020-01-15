@@ -3,6 +3,7 @@ package com.ticketing.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Table(name = "AIRLINE_COMPANY")
@@ -13,6 +14,9 @@ public class AirlineCompany {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "CREATE_DATE", nullable = false)
+    private Date createDate;
 
     @Column(name = "COMPANY_NAME", nullable = false)
     private String companyName;
