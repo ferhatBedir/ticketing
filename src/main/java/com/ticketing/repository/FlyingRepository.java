@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FlyingRepository extends JpaRepository<Flying, Long> {
+
+    Flying findFirstById(Long flyingId);
 }

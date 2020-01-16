@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface RouteRepository extends JpaRepository<Route,Long> {
 
 
+    Route findFirstById(Long routeId);
 }
