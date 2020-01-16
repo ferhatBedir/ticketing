@@ -37,18 +37,19 @@ public class AirportController {
     }
 
     @GetMapping("/find")
-    public AirportDTO findById(@RequestParam(value = "airportId") Long airportId) {
+    public AirportDTO findById(@RequestParam(value = "id") Long airportId) {
         return airportService.findByAirportId(airportId);
     }
 
     @PostMapping("/update")
-    public void updateAirport(@RequestParam(value = "id")Long airportId,@RequestBody AirportDTO airportDTO){
-        airportService.updateAirport(airportId,airportDTO);
+    public void updateAirport(@RequestParam(value = "id") Long airportId, @RequestBody AirportDTO airportDTO) {
+        verificationProcedures.checkData(airportDTO);
+        airportService.updateAirport(airportId, airportDTO);
     }
 
 
     @DeleteMapping("/delete")
-    public void deleteAirport(@RequestParam(value = "id")Long airportId){
+    public void deleteAirport(@RequestParam(value = "id") Long airportId) {
         airportService.deleteAirport(airportId);
     }
 }
