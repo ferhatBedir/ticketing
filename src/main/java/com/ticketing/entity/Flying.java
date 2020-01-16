@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "FLYING")
+@Table(name = "flying", catalog = "master", schema = "dbo")
 @Entity
 public class Flying {
 
@@ -14,7 +14,6 @@ public class Flying {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(name = "CREATE_DATE", nullable = false)
     private Date createDate;

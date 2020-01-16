@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "AIRPORT")
+@Table(name = "airport", catalog = "master", schema = "dbo")
 @Entity
 public class Airport {
 
@@ -20,7 +20,6 @@ public class Airport {
 
     @Column(name = "AIRPORT_NAME", nullable = false)
     private String airportName;
-
 
     @Column(name = "AIRPORT_LOCATION", nullable = false)
     private String airportLocation;
