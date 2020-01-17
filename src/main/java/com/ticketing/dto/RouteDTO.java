@@ -11,9 +11,9 @@ public class RouteDTO {
     private Long id;
     private Date createDate;
     @NotNull
-    private AirportDTO startingPlace;
+    private Long boardingAirportId;
     @NotNull
-    private AirportDTO destination;
+    private Long destinationAirportId;
     @NotNull
     private Integer airplaneSpeed;
     @NotNull
