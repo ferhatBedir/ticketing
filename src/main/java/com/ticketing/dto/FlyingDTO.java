@@ -12,11 +12,11 @@ public class FlyingDTO {
     private Long id;
     private Date createDate;
     @NotNull
-    private AirlineCompanyDTO airlineCompany;
+    private Long airlineCompanyId;
     @NotNull
     private Date boardingTime;
     @NotNull
     private Date destinationTime;
     @NotNull
-    private RouteDTO flyingRoute;
+    private Long flyingRouteId;
 }

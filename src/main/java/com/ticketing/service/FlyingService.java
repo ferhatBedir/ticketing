@@ -14,7 +14,7 @@ public interface FlyingService {
 
     FlyingDTO findById(Long flyingId);
 
-    void update(Long flyingId, FlyingDTO flyingDTO);
+    void updateFlying(Long flyingId, FlyingDTO flyingDTO) throws Exception;
 
     void deleteByFlyingId(Long flyingId);
 }

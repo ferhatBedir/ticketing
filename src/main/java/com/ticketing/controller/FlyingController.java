@@ -47,8 +47,8 @@ public class FlyingController {
     }
 
     @PostMapping("/update")
-    public void updateFlying(@RequestParam(value = "id") Long flyingId, @RequestBody FlyingDTO flyingDTO) {
-        flyingService.update(flyingId, flyingDTO);
+    public void updateFlying(@RequestParam(value = "id") Long flyingId, @RequestBody FlyingDTO flyingDTO) throws Exception {
+        flyingService.updateFlying(flyingId, flyingDTO);
     }
 
     @DeleteMapping("/delete")
