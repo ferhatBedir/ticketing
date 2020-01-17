@@ -19,10 +19,4 @@ public class FlyingDTO {
     private Date destinationTime;
     @NotNull
     private RouteDTO flyingRoute;
-    @NotNull
-    private Double price;
-    @NotNull
-    private Integer quota;
-    @NotNull
-    private Integer remainingQuota;
 }

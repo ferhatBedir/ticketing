@@ -88,9 +88,6 @@ public class FlyingServiceImpl implements FlyingService {
         flyingDTO.setCreateDate(flying.getCreateDate());
         flyingDTO.setDestinationTime(flying.getDestinationTime());
 //        flyingDTO.setFlyingRoute(flying.getFlyingRoute());
-        flyingDTO.setPrice(flying.getPrice());
-        flyingDTO.setQuota(flying.getQuota());
-        flyingDTO.setRemainingQuota(flying.getRemainingQuota());
         return flyingDTO;
     }
 
@@ -101,9 +98,6 @@ public class FlyingServiceImpl implements FlyingService {
         flying.setCreateDate(new Date());
         flying.setDestinationTime(flyingDTO.getDestinationTime());
 //        flying.setFlyingRoute(flyingDTO.getFlyingRoute());
-        flying.setPrice(flyingDTO.getPrice());
-        flying.setQuota(flyingDTO.getQuota());
-        flying.setRemainingQuota(flyingDTO.getRemainingQuota());
         return null;
     }
 

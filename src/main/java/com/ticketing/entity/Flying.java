@@ -31,14 +31,4 @@ public class Flying {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "FLYING_ROUTE_ID", referencedColumnName = "ID", nullable = false)
     private Route flyingRoute;
-
-    @Column(name = "PRICE", nullable = false)
-    private Double price;
-
-    @Column(name = "QUOTA", nullable = false)
-    private Integer quota;
-
-    @Column(name = "REMAINING_QUOTA", nullable = false)
-    private Integer remainingQuota;
-
 }
