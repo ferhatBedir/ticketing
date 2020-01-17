@@ -126,14 +126,7 @@ public class AirportServiceImplTest {
 
     @Test
     public void findByAirportId_whenAirportIdNotFoundInDBThenReturnNull() {
-        Airport newAirport = new Airport();
-        newAirport.setId(1L);
-        newAirport.setAirportName("Airport 1");
-        newAirport.setAirportLocation("1. Region");
-        newAirport.setCreateDate(new Date());
-
-        when(airportRepository.findFirstById(1L)).thenReturn(newAirport);
-
+        when(airportRepository.findFirstById(2L)).thenReturn(null);
         AirportDTO airportDTO = airportService.findByAirportId(2L);
         Assertions.assertThat(airportDTO).isNull();
     }

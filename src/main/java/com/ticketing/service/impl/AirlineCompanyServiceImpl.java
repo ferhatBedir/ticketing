@@ -2,6 +2,7 @@ package com.ticketing.service.impl;
 
 import com.ticketing.dto.AirlineCompanyDTO;
 import com.ticketing.entity.AirlineCompany;
+import com.ticketing.exception.ExceptionMessage;
 import com.ticketing.repository.AirlineCompanyRepository;
 import com.ticketing.service.AirlineCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,42 +23,52 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
 
     @Override
     public void addAirlineCompany(AirlineCompanyDTO airlineCompanyDTO) {
-        /**
-         * add method will write
-         */
+        AirlineCompany airlineCompany = convertToAirlineCompany(airlineCompanyDTO);
+        if (airlineCompany == null) {
+            throw new NullPointerException(ExceptionMessage.PARAMETER_IS_NULL);
+        }
+        airlineCompanyRepository.save(airlineCompany);
+
     }
 
     @Override
     public List<AirlineCompanyDTO> findAllAirlineCompany() {
-        /**
-         * findAll method will write
-         */
-        return null;
+        List<AirlineCompany> airlineCompanyList = airlineCompanyRepository.findAll();
+        if (airlineCompanyList == null || airlineCompanyList.size() == 0) {
+            return null;
+        } else {
+            return convertToAirlineCompanyDTOList(airlineCompanyList);
+        }
+
     }
 
     @Override
     public AirlineCompanyDTO findByAirlineCompanyId(Long airlineId) {
-        /**
-         * find method will write
-         */
         AirlineCompany airlineCompany = airlineCompanyRepository.findFirstById(airlineId);
-        return null;
+        return convertToAirlineCompanyDTO(airlineCompany);
     }
 
     @Override
     public void updateAirlineCompany(Long airlineId, AirlineCompanyDTO airlineCompanyDTO) {
-        /**
-         * update method will write
-         */
+        AirlineCompany airlineCompany = airlineCompanyRepository.findFirstById(airlineId);
+        if (airlineCompany == null || airlineCompanyDTO == null) {
+            throw new NullPointerException(ExceptionMessage.SOME_PARAMETERS_IS_NULL);
+        }
+        airlineCompany.setGeneralCenter(airlineCompanyDTO.getGeneralCenter());
+        airlineCompany.setCompanyName(airlineCompanyDTO.getCompanyName());
+        airlineCompany.setEmployeeCount(airlineCompanyDTO.getEmployeeCount());
+
+        airlineCompanyRepository.save(airlineCompany);
     }
 
     @Override
     public void deleteAirlineCompany(Long airlineId) {
-        /**
-         * delete method will write
-         */
+        AirlineCompany airlineCompany = airlineCompanyRepository.findFirstById(airlineId);
+        if (airlineCompany == null) {
+            throw new NullPointerException(ExceptionMessage.AIRLINE_NOT_FOUND);
+        }
+        airlineCompanyRepository.delete(airlineCompany);
     }
-
 
     private List<AirlineCompanyDTO> convertToAirlineCompanyDTOList(List<AirlineCompany> airlineCompanyList) {
         List<AirlineCompanyDTO> airlineCompanyDTOList = new ArrayList<>();
@@ -72,8 +83,10 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
         return airlineCompanyDTOList;
     }
 
-
     private AirlineCompanyDTO convertToAirlineCompanyDTO(AirlineCompany airlineCompany) {
+        if (airlineCompany == null) {
+            return null;
+        }
         AirlineCompanyDTO airlineCompanyDTO = new AirlineCompanyDTO();
         airlineCompanyDTO.setId(airlineCompany.getId());
         airlineCompanyDTO.setCompanyName(airlineCompany.getCompanyName());
@@ -84,8 +97,13 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
 
     }
 
-
     private AirlineCompany convertToAirlineCompany(AirlineCompanyDTO airlineCompanyDTO) {
+        if (airlineCompanyDTO == null ||
+                (airlineCompanyDTO.getCompanyName() == null ||
+                        airlineCompanyDTO.getGeneralCenter() == null ||
+                        airlineCompanyDTO.getEmployeeCount() == null)) {
+            throw new NullPointerException(ExceptionMessage.PARAMETER_IS_NULL);
+        }
         AirlineCompany airlineCompany = new AirlineCompany();
         airlineCompany.setCreateDate(new Date());
         airlineCompany.setGeneralCenter(airlineCompanyDTO.getGeneralCenter());

@@ -25,11 +25,10 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public void addAirport(AirportDTO airportDTO) {
         Airport airport = convertToAirport(airportDTO);
-        if (airport != null) {
-            airportRepository.save(airport);
-        } else {
-            throw new NullPointerException(ExceptionMessage.SOME_PARAMETERS_IS_NULL);
+        if (airport == null) {
+            throw new NullPointerException(ExceptionMessage.PARAMETER_IS_NULL);
         }
+        airportRepository.save(airport);
 
     }
 
@@ -89,14 +88,14 @@ public class AirportServiceImpl implements AirportService {
     }
 
     private AirportDTO convertToAirportDTO(Airport airport) {
-        AirportDTO airportDTO = new AirportDTO();
-        if (airport != null) {
-            airportDTO.setId(airport.getId());
-            airportDTO.setAirportName(airport.getAirportName());
-            airportDTO.setAirportLocation(airport.getAirportLocation());
-            airportDTO.setCreateDate(airport.getCreateDate());
-            return airportDTO;
+        if (airport == null) {
+            return null;
         }
-        return null;
+        AirportDTO airportDTO = new AirportDTO();
+        airportDTO.setId(airport.getId());
+        airportDTO.setAirportName(airport.getAirportName());
+        airportDTO.setAirportLocation(airport.getAirportLocation());
+        airportDTO.setCreateDate(airport.getCreateDate());
+        return airportDTO;
     }
 }

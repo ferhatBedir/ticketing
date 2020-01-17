@@ -5,6 +5,7 @@ import com.ticketing.dto.AirlineCompanyDTO;
 import java.util.List;
 
 public interface AirlineCompanyService {
+
     void addAirlineCompany(AirlineCompanyDTO airlineCompanyDTO);
 
     List<AirlineCompanyDTO> findAllAirlineCompany();
