@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -54,5 +56,41 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
         /**
          * delete method will write
          */
+    }
+
+
+    private List<AirlineCompanyDTO> convertToAirlineCompanyDTOList(List<AirlineCompany> airlineCompanyList) {
+        List<AirlineCompanyDTO> airlineCompanyDTOList = new ArrayList<>();
+        if (airlineCompanyList == null || airlineCompanyList.size() == 0) {
+
+        } else {
+            airlineCompanyList.forEach(airlineCompany -> {
+                AirlineCompanyDTO airlineCompanyDTO = convertToAirlineCompanyDTO(airlineCompany);
+                airlineCompanyDTOList.add(airlineCompanyDTO);
+            });
+        }
+        return airlineCompanyDTOList;
+    }
+
+
+    private AirlineCompanyDTO convertToAirlineCompanyDTO(AirlineCompany airlineCompany) {
+        AirlineCompanyDTO airlineCompanyDTO = new AirlineCompanyDTO();
+        airlineCompanyDTO.setId(airlineCompany.getId());
+        airlineCompanyDTO.setCompanyName(airlineCompany.getCompanyName());
+        airlineCompanyDTO.setCreateDate(airlineCompany.getCreateDate());
+        airlineCompanyDTO.setEmployeeCount(airlineCompany.getEmployeeCount());
+        airlineCompanyDTO.setGeneralCenter(airlineCompany.getGeneralCenter());
+        return airlineCompanyDTO;
+
+    }
+
+
+    private AirlineCompany convertToAirlineCompany(AirlineCompanyDTO airlineCompanyDTO) {
+        AirlineCompany airlineCompany = new AirlineCompany();
+        airlineCompany.setCreateDate(new Date());
+        airlineCompany.setGeneralCenter(airlineCompanyDTO.getGeneralCenter());
+        airlineCompany.setCompanyName(airlineCompanyDTO.getCompanyName());
+        airlineCompany.setEmployeeCount(airlineCompanyDTO.getEmployeeCount());
+        return airlineCompany;
     }
 }

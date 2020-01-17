@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -63,6 +65,46 @@ public class FlyingServiceImpl implements FlyingService {
         /**
          * delete method will write
          */
+    }
+
+    private List<FlyingDTO> convertToFlyingDTOList(List<Flying> flyingList) {
+        List<FlyingDTO> flyingDTOList = new ArrayList<>();
+        if (flyingList == null || flyingList.size() == 0) {
+
+        } else {
+            flyingList.forEach(flying -> {
+                FlyingDTO flyingDTO = convertToFlyingDTO(flying);
+                flyingDTOList.add(flyingDTO);
+            });
+        }
+        return flyingDTOList;
+    }
+
+    private FlyingDTO convertToFlyingDTO(Flying flying) {
+        FlyingDTO flyingDTO = new FlyingDTO();
+        flyingDTO.setId(flying.getId());
+//        flyingDTO.setAirlineCompany(flying.getAirlineCompany());
+        flyingDTO.setBoardingTime(flying.getBoardingTime());
+        flyingDTO.setCreateDate(flying.getCreateDate());
+        flyingDTO.setDestinationTime(flying.getDestinationTime());
+//        flyingDTO.setFlyingRoute(flying.getFlyingRoute());
+        flyingDTO.setPrice(flying.getPrice());
+        flyingDTO.setQuota(flying.getQuota());
+        flyingDTO.setRemainingQuota(flying.getRemainingQuota());
+        return flyingDTO;
+    }
+
+    private Flying convertToFlying(FlyingDTO flyingDTO) {
+        Flying flying = new Flying();
+//        flying.setAirlineCompany(flyingDTO.getAirlineCompany());
+        flying.setBoardingTime(flyingDTO.getBoardingTime());
+        flying.setCreateDate(new Date());
+        flying.setDestinationTime(flyingDTO.getDestinationTime());
+//        flying.setFlyingRoute(flyingDTO.getFlyingRoute());
+        flying.setPrice(flyingDTO.getPrice());
+        flying.setQuota(flyingDTO.getQuota());
+        flying.setRemainingQuota(flyingDTO.getRemainingQuota());
+        return null;
     }
 
 
