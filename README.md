@@ -7,6 +7,7 @@ Uygulamada kullanılan Teknolojıler
 * MsSql
 * Lombook
 * Hibernate
+* Junit
 * Swagger
 
 Not: Uygulamayı çalıştırmak için; uygulama içerisinde application.properties dosyasında bulunan Db bilgilerini kendi local Db'nizin bilgileri ile değiştiriniz. 
