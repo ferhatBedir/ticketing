@@ -40,12 +40,14 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RouteDTO> findAllRoute() {
         List<Route> routeList = routeRepository.findAll();
         return convertToRouteDTOList(routeList);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RouteDTO findByRouteId(Long routeId) {
         Route route = routeRepository.findFirstById(routeId);
         return convertToRouteDTO(route);

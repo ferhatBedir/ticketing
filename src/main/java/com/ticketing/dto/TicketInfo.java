@@ -2,24 +2,17 @@ package com.ticketing.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
-public class TicketDto {
+public class TicketInfo {
 
-
-    private Long id;
-    @NotNull
     private Long flyingId;
-    @NotNull
+    private Long airlineCompanyId;
+    private Date boardingTime;
+    private Date destinationTime;
+    private Long flyingRouteId;
     private Double ticketPrice;
-
     private Integer quota;
-
     private Integer remainingQuota;
-
-    private Integer ticketNumber;
-
-    private Date ticketBuyDate;
 }

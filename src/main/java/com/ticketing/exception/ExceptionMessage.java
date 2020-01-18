@@ -12,4 +12,8 @@ public class ExceptionMessage {
     public static final String ROUTE_OR_AIRLINE_COMPANY_IS_NULL = "ROUTE_OR_AIRLINE_COMPANY_IS_NULL";
     public static final String BOARDING_TIME_CANNOT_BE_SMALLER = "BOARDING_TIME_CANNOT_BE_SMALLER";
     public static final String FLYING_NOT_FOUND = "FLYING_NOT_FOUND";
+    public static final String AIRPLANE_IS_FULL = "AIRPLANE_IS_FULL";
+    public static final String INSUFFICIENT_MONEY = "INSUFFICIENT_MONEY";
+    public static final String TICKET_NOT_FOUND = "TICKET_NOT_FOUND";
+    public static final String TICKET_IRREVOCABLE = "TICKET_IRREVOCABLE";
 }

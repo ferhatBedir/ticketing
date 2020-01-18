@@ -32,6 +32,7 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<AirlineCompanyDTO> findAllAirlineCompany() {
         List<AirlineCompany> airlineCompanyList = airlineCompanyRepository.findAll();
         if (airlineCompanyList == null || airlineCompanyList.size() == 0) {
@@ -43,6 +44,7 @@ public class AirlineCompanyServiceImpl implements AirlineCompanyService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AirlineCompanyDTO findByAirlineCompanyId(Long airlineId) {
         AirlineCompany airlineCompany = airlineCompanyRepository.findFirstById(airlineId);
         return convertToAirlineCompanyDTO(airlineCompany);

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "route", catalog = "master", schema = "dbo")
+@Table(name = "route", catalog = "tempdb", schema = "dbo")
 @Entity
 public class Route {
 

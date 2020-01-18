@@ -57,18 +57,21 @@ public class FlyingServiceImpl implements FlyingService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<FlyingDTO> findAllActiveFlying() {
         List<Flying> flyingList = flyingRepository.findOneByBoardingTimeAfter(new Date());
         return convertToFlyingDTOList(flyingList);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<FlyingDTO> findAll() {
         List<Flying> flyingList = flyingRepository.findAll();
         return convertToFlyingDTOList(flyingList);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public FlyingDTO findById(Long flyingId) {
         Flying flying = flyingRepository.findFirstById(flyingId);
         return convertToFlyingDTO(flying);
@@ -102,6 +105,9 @@ public class FlyingServiceImpl implements FlyingService {
         }
         flying.setBoardingTime(flyingDTO.getBoardingTime());
         flying.setDestinationTime(flyingDTO.getDestinationTime());
+        flying.setRemainingQuota(flyingDTO.getRemainingQuota());
+        flying.setTicketPrice(flyingDTO.getTicketPrice());
+        flying.setQuota(flyingDTO.getQuota());
         flyingRepository.save(flying);
 
     }
@@ -113,6 +119,11 @@ public class FlyingServiceImpl implements FlyingService {
             throw new NullPointerException(ExceptionMessage.FLYING_NOT_FOUND);
         }
         flyingRepository.delete(flying);
+    }
+
+    @Override
+    public Flying findByIdForTicket(Long flyingId) {
+        return flyingRepository.findFirstById(flyingId);
     }
 
     private List<FlyingDTO> convertToFlyingDTOList(List<Flying> flyingList) {
@@ -139,6 +150,9 @@ public class FlyingServiceImpl implements FlyingService {
         flyingDTO.setDestinationTime(flying.getDestinationTime());
         flyingDTO.setFlyingRouteId(flying.getFlyingRoute().getId());
         flyingDTO.setAirlineCompanyId(flying.getAirlineCompany().getId());
+        flyingDTO.setQuota(flying.getQuota());
+        flyingDTO.setRemainingQuota(flying.getRemainingQuota());
+        flyingDTO.setTicketPrice(flying.getTicketPrice());
         return flyingDTO;
     }
 
@@ -146,11 +160,16 @@ public class FlyingServiceImpl implements FlyingService {
         if (flyingDTO != null && (flyingDTO.getBoardingTime() != null &&
                 flyingDTO.getDestinationTime() != null &&
                 flyingDTO.getAirlineCompanyId() != null &&
-                flyingDTO.getFlyingRouteId() != null)) {
+                flyingDTO.getFlyingRouteId() != null &&
+                flyingDTO.getTicketPrice() != null &&
+                flyingDTO.getQuota() != null)) {
             Flying flying = new Flying();
             flying.setBoardingTime(flyingDTO.getBoardingTime());
             flying.setCreateDate(new Date());
             flying.setDestinationTime(flyingDTO.getDestinationTime());
+            flying.setTicketPrice(flyingDTO.getTicketPrice());
+            flying.setQuota(flyingDTO.getQuota());
+            flying.setRemainingQuota(flyingDTO.getQuota());
             return flying;
         }
         return null;

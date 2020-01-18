@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "flying", catalog = "master", schema = "dbo")
+@Table(name = "flying", catalog = "tempdb", schema = "dbo")
 @Entity
 public class Flying {
 
@@ -31,4 +31,13 @@ public class Flying {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "FLYING_ROUTE_ID", referencedColumnName = "ID", nullable = false)
     private Route flyingRoute;
+
+    @Column(name = "PRICE", nullable = false)
+    private Double ticketPrice;
+
+    @Column(name = "QUOTA", nullable = false)
+    private Integer quota;
+
+    @Column(name = "REMAINING_QUOTA", nullable = false)
+    private Integer remainingQuota;
 }

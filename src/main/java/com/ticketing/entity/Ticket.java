@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "ticket", catalog = "master", schema = "dbo")
+@Table(name = "ticket", catalog = "tempdb", schema = "dbo")
 @Entity
 public class Ticket {
 
@@ -20,18 +20,12 @@ public class Ticket {
     @JoinColumn(name = "FLYING_ID", referencedColumnName = "ID", nullable = false)
     private Flying flying;
 
-    @Column(name = "PRICE", nullable = false)
-    private Double ticketPrice;
-
-    @Column(name = "QUOTA", nullable = false)
-    private Integer quota;
-
-    @Column(name = "REMAINING_QUOTA", nullable = false)
-    private Integer remainingQuota;
-
     @Column(name = "TICKET_NUMBER", nullable = false)
-    private Integer ticketNumber;
+    private String ticketNumber;
 
     @Column(name = "TICKET_BUY_DATE", nullable = false)
     private Date ticketBuyDate;
+
+    @Column(name = "MONEY_PAID", nullable = false)
+    private Double moneyPaid;
 }

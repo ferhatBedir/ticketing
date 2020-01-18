@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Table(name = "airport", catalog = "master", schema = "dbo")
+@Table(name = "airport", catalog = "tempdb", schema = "dbo")
 @Entity
 public class Airport {
 

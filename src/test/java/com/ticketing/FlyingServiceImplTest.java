@@ -77,6 +77,8 @@ public class FlyingServiceImplTest {
         flyingDTO.setDestinationTime(new Date());
         flyingDTO.setAirlineCompanyId(1L);
         flyingDTO.setFlyingRouteId(1L);
+        flyingDTO.setTicketPrice(100D);
+        flyingDTO.setQuota(100);
 
         when(routeRepository.findFirstById(1L)).thenReturn(route);
         when(airportRepository.findFirstById(1L)).thenReturn(boardingAirport);
@@ -480,8 +482,8 @@ public class FlyingServiceImplTest {
         flying.setId(1L);
         flying.setCreateDate(new Date());
         flying.setFlyingRoute(route);
-        flying.setDestinationTime(new Date(11111111L));
         flying.setBoardingTime(new Date());
+        flying.setDestinationTime(new Date());
         flying.setAirlineCompany(airlineCompany);
 
 
@@ -515,8 +517,8 @@ public class FlyingServiceImplTest {
 
         FlyingDTO flyingUpdate = new FlyingDTO();
         flyingUpdate.setFlyingRouteId(3L);
-        flyingUpdate.setDestinationTime(new Date(11111111L));
         flyingUpdate.setBoardingTime(new Date());
+        flyingUpdate.setDestinationTime(new Date());
         flyingUpdate.setAirlineCompanyId(3L);
 
 
