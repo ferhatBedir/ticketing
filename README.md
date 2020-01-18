@@ -104,4 +104,4 @@ Uygulama Çalışması Hakkında
 * Uygulamada airlineCompany, airport, route, flying ve ticket tabloları bulunmaktadır. Bu tabloların entity kısımlarında propertyleri notNull olarak tanımlanmıştır.
 * Uygulamada herhangi bir tabloya kayıt eklemek için, http Post isteği yapılmalıdır.
 * Post body object'leri uygulamadaki DTO class'larıdır. Bu classlar içerisinde @NotNull olarak tanımlanan bir parametre istek içerinde gönderilmesi zorunludur. Kalanları ise opsiyoneldir.
-* Bu uygulamayı local ortamda ayağa kaldırdıktan sonra http://localhost:9090/swagger-ui.html#/RouteController_API addresinden uygulama dokumanına erişebilirsiniz.(Uygulama default 9090 portunca çalışmaktadır. bu config değiştirildiğinde swagger adresinide değiştirmeyi unutmayınız.)
+* Bu uygulamayı local ortamda ayağa kaldırdıktan sonra http://localhost:9090/swagger-ui.html#/RouteController_API addresinden uygulama dokumanına erişebilirsiniz.(Uygulama default 9090 portunda çalışmaktadır. Bu config değiştirildiğinde swagger adresinide değiştirmeyi unutmayınız.)
