@@ -91,6 +91,9 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public void ticketVoidByTicketNumber(String ticketNumber) throws Exception {
         Ticket ticket = ticketRepository.findFirstByTicketNumber(ticketNumber);
+        if (ticket==null){
+            throw new NullPointerException(ExceptionMessage.TICKET_NOT_FOUND);
+        }
         if (ticket.getFlying().getBoardingTime().getTime() < new Date().getTime()) {
             throw new Exception(ExceptionMessage.TICKET_IRREVOCABLE);
         }

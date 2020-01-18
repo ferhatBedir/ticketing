@@ -3,7 +3,6 @@ package com.ticketing.controller;
 
 import com.ticketing.dto.TicketDTO;
 import com.ticketing.dto.TicketInfo;
-import com.ticketing.service.FlyingService;
 import com.ticketing.service.TicketService;
 import com.ticketing.util.VerificationProcedures;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +14,13 @@ public class TicketController {
 
 
     private TicketService ticketService;
-    private FlyingService flyingService;
     private VerificationProcedures verificationProcedures;
 
 
     @Autowired
     public TicketController(TicketService ticketService,
-                            FlyingService flyingService,
                             VerificationProcedures verificationProcedures) {
         this.ticketService = ticketService;
-        this.flyingService = flyingService;
         this.verificationProcedures = verificationProcedures;
     }
 
