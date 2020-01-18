@@ -258,62 +258,6 @@ public class TicketServiceImplTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void findMyTicketByTicketNumber_whenTicketNumberNotFoundShouldBeReturnNull() {
-        Airport boardingAirport = new Airport();
-        boardingAirport.setId(1L);
-        boardingAirport.setCreateDate(new Date());
-        boardingAirport.setAirportLocation("Region 1");
-        boardingAirport.setAirportName("Airport Name 1");
-
-        Airport destinationAirport = new Airport();
-        destinationAirport.setId(2L);
-        destinationAirport.setCreateDate(new Date());
-        destinationAirport.setAirportLocation("Region 2");
-        destinationAirport.setAirportName("Airport Name 2");
-
-        Route route = new Route();
-        route.setId(1L);
-        route.setStartingPlace(destinationAirport);
-        route.setDestination(destinationAirport);
-        route.setCreateDate(new Date());
-        route.setDistance(1000);
-        route.setAirplaneSpeed(1000);
-        route.setAirplaneHeight(1000);
-
-        AirlineCompany airlineCompany = new AirlineCompany();
-        airlineCompany.setId(1L);
-        airlineCompany.setCreateDate(new Date());
-        airlineCompany.setCompanyName("Airline Company Name");
-        airlineCompany.setGeneralCenter("Airline Company Region 1");
-        airlineCompany.setEmployeeCount(1000);
-
-        Flying flying = new Flying();
-        flying.setId(1L);
-        flying.setCreateDate(new Date());
-        flying.setAirlineCompany(airlineCompany);
-        flying.setFlyingRoute(route);
-        flying.setBoardingTime(new Date());
-        flying.setDestinationTime(new Date());
-        flying.setTicketPrice(100D);
-        flying.setQuota(100);
-        flying.setRemainingQuota(100);
-
-
-        Ticket ticket = new Ticket();
-        ticket.setId(1L);
-        ticket.setMoneyPaid(100D);
-        ticket.setFlying(flying);
-        ticket.setTicketBuyDate(new Date());
-        String ticketNumber = String.valueOf(new Date().getTime());
-        ticket.setTicketNumber(ticketNumber);
-
-        when(ticketRepository.findFirstByTicketNumber(ticketNumber)).thenReturn(ticket);
-
-        TicketDTO ticketDTO = ticketService.findTicketByTicketNumber(String.valueOf(new Date().getTime()));
-        Assertions.assertThat(ticketDTO).isNull();
-    }
-
-    @Test(expected = NullPointerException.class)
     public void findMyTicketByTicketNumber_whenTicketNumberIsNullShouldReturnThrowException() {
         when(ticketRepository.findFirstByTicketNumber(null)).thenReturn(null);
         TicketDTO ticketDTO = ticketService.findTicketByTicketNumber(null);
