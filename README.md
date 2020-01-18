@@ -7,6 +7,7 @@ Uygulamada kullanılan Teknolojıler
 * MsSql
 * Lombook
 * Hibernate
+* Swagger
 
 Not: Uygulamayı çalıştırmak için; uygulama içerisinde application.properties dosyasında bulunan Db bilgilerini kendi local Db'nizin bilgileri ile değiştiriniz. 
 
@@ -98,77 +99,9 @@ CREATE TABLE tempdb.dbo.ticket(
  MONEY_PAID float NOT NULL
 );
 
+
 Uygulama Çalışması Hakkında
-* User Tablosu içinde -> name, surname, birthDate propertyleri bulunmaktadır. Bu propertyler notNull olarak tanımlanmıştır.
-* PhoneNumber Tablosu içinde -> phoneNumber, user propertyleri bulunmaktadır. Bu propertyler notNull olarak tanımlanmıştır.
-* User ve phoneNumber tabloları arasında oneToMany şeklinde bir ilişki vardır.
-* Uygulamaya user eklemek için userModel sınıfı, http Post isteğinin body'si olarak gönderilmelidir.
-* userModel sınıfınfda phoneNumber dolu gönderilirse user bilgisi ile birlikte phone bilgiside DB'ye eklenecektir. göderilmez ise sadece user bilgisi DB'ye eklenecektir.
-* Uygulamaya phoneNumber eklemek için phoneNumberModel sınıfı, http Post isteğinin body'si olarak gönderilmeli ve header'da userId gönderilnelidir.
-* User ve phoneNumber bilgilerinin silinmesi için, gerekli id bilgileri get request'in header'inde gönderilmelidir.
-* User ve phoneNumber'in ilgili kayıtlarını görmek için, gerekli id bilgileri get request'in header'inde gönderilmelidir.
-
-
-Uygulamanın enpointleri ve body örnekleri
-
-* User eklemek için -> http://localhost:8080/user/add
-
-	* Request Body;
-	
-		{
-			
-			"birthDate" : "1994-04-12T00:00:00.000",
-			
-			"name" : "testName",
-			
-			"surname" : "testSurname",
-			
-			"phoneNumber" : "05331231212" //isteğe bağlı gönderilebilir.
-			
-		}
-		
-
-* User güncellemek için -> http://localhost:8080/user/update?id=1(userId)
-	
-	* Request Body;
-	
-		{
-			
-			"birthDate" : "1999-04-12T00:00:00.000",
-			
-			"name" : "updateName",
-			
-			"surname" : "updateSurname",
-			
-		}
-
-* Tüm user kayıtlarını görüntülemek için -> http://localhost:8080/user/findAll
-
-* İlgili user kaydını görüntülemek için -> http://localhost:8080/user/find?id=1(userId)
-
-* İlgili user kaydını silmek için -> http://localhost:8080/user/delete?id=1(userId)
-
-
-* PhoneNumber Eklemek için -> http://localhost:8080/phoneNumber/add?id=1(userId)
-	
-	* Request Body;
-	
-		{
-		
-			"phoneNumber" : "05331231212"
-			
-		}
-
-* İlgili userın tüm kayıtlı telefon numaralarını bulmak için -> http://localhost:8080/phoneNumber/find?id=1(userId)
-
-* İlgili phoneNumber kaydı silmek için -> http://localhost:8080/phoneNumber/delete?id=1(phoneNumberId)
-
-
-
-
-
-
-
-
-
-
+* Uygulama airlineCompany, airport, route, flying ve ticket tabloları bulunmaktadır. Bu tabloların entity kısımlarında propertyleri notNull olarak tanımlanmıştır.
+* Uygulamada herhangi bir tabloya kayıt eklemek için, http Post isteği yapılmalıdır.
+* Post body object'leri uygulamadaki DTO class'larıdır. Bu classlar içerisinde @NotNull olarak tanımlanan bir parametre istek içerinde gönderilmesi zorunludur. Kalanları ise opsiyoneldir.
+* Bu uygulamayı local ortamda ayağa kaldırdıktan sonra http://localhost:9090/swagger-ui.html#/RouteController_API addresinden uygulama dokumanına erişebilirsiniz.(Uygulama default 9090 portunca çalışmaktadır. bu config değiştirildiğinde swagger adresinide değiştirmeyi unutmayınız.)
