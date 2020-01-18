@@ -18,52 +18,83 @@ docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourPassword' -p 1433:1433 -d mcr.
  Sql scriptleri
  
  * AirlineCompany Tablosu
+ 
  CREATE TABLE tempdb.dbo.airline_company(
+ 
  ID bigint IDENTITY PRIMARY KEY,
+ 
  CREATE_DATE DATE NOT NULL,
+ 
  COMPANY_NAME nvarchar(255) NOT NULL,
+ 
  GENERAL_CENTER nvarchar(255) NOT NULL,
+ 
  EMPLOYEE_COUNT int NOT NULL
 );
 
 * Airport Tablosu
 CREATE TABLE tempdb.dbo.airport(
+
  ID bigint IDENTITY PRIMARY KEY,
+ 
  CREATE_DATE DATE NOT NULL,
+ 
  AIRPORT_NAME nvarchar(255) NOT NULL,
+ 
  AIRPORT_LOCATION nvarchar(255) NOT NULL
 );
 
 * Route Tablosu
 CREATE TABLE tempdb.dbo.route(
+
  ID bigint IDENTITY PRIMARY KEY,
+ 
  CREATE_DATE DATE NOT NULL,
+ 
  STARTING_PLACE_ID bigint NOT NULL,
+ 
  DESTINATION_ID bigint NOT NULL,
+ 
  AIRPLANE_SPEED int NOT NULL,
+ 
  AIRPLANE_HEIGHT int NOT NULL,
+ 
  DISTANCE int NOT NULL
 );
 
 * Flying Tablosu
 CREATE TABLE tempdb.dbo.flying(
+
  ID bigint IDENTITY PRIMARY KEY,
+ 
  CREATE_DATE DATE NOT NULL,
+ 
  AIRLINE_COMPANY_ID bigint NOT NULL,
+ 
  BOARDING_TIME DATE NOT NULL,
+ 
  DESTINATION_TIME DATE NOT NULL,
+ 
  FLYING_ROUTE_ID bigint NOT NULL,
+ 
  PRICE float NOT NULL,
+ 
  QUOTA int NOT NULL,
+ 
  REMAINING_QUOTA int NOT NULL
 );
 
 * Ticket Tablosu
 CREATE TABLE tempdb.dbo.ticket(
+
  ID bigint IDENTITY PRIMARY KEY,
+ 
  FLYING_ID bigint NOT NULL,
+ 
  TICKET_NUMBER nvarchar(255) NOT NULL,
+ 
  TICKET_BUY_DATE DATE NOT NULL,
+ 
  MONEY_PAID float NOT NULL
 );
 
