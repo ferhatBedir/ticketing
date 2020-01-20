@@ -108,4 +108,4 @@ Uygulama Çalışması Hakkında
 * Bu uygulamayı local ortamda ayağa kaldırdıktan sonra http://localhost:9090/swagger-ui.html#/RouteController_API addresinden uygulama dokumanına erişebilirsiniz.(Uygulama default 9090 portunda çalışmaktadır. Bu config değiştirildiğinde swagger adresinide değiştirmeyi unutmayınız.)
 
 Uygulamanın executable jar dosyası release kısmında bulunmaktadır. Ayrıca Release kısmına Dockerfile dosyasıda bulunmaktadır.
-Docker image'ini docker hub'a göndermedim. Local oratamımda database ve uygulama ayrı containerlarda calıstım. Mssql için docker hubtan image aldım uygulama için kendi Dockerfile dosyamı yazdım. 
+Uygulamayı dockerdan pull etmek için : "docker pull fbedir/ticketing-app:latest" komutunu kullanabilirsiniz . Local oratamımda database ve uygulama ayrı containerlarda calıstım. Mssql için docker hubtan image aldım uygulama için kendi Dockerfile dosyamı yazdım. 
